@@ -1,0 +1,6 @@
+Ein einfaches Beispiel, mit dem man ein Modul übersetzen und in
+den Kernel einhängen und aushängen kann.
+
+Auf das Modul kann nicht mit open, close, read oder write zugegriffen
+werden.
+
