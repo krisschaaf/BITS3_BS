@@ -6,8 +6,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: ***  
+No rule to make target `all'.  Stop.
+ 
 
-# Make data base, printed on Thu Jan 27 11:17:42 2022
+# Make data base, printed on Sat Jan 29 11:42:04 2022
 
 # Variables
 
@@ -40,7 +44,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/c5/nywy4j2j4yzcjfy4l7y12qjr0000gn/T/vscode-ipc-00f32e4a-7a85-4f25-a91d-b2741408693c.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/c5/nywy4j2j4yzcjfy4l7y12qjr0000gn/T/vscode-ipc-f2e07e77-754c-4779-85b1-b71fe4e03562.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -52,14 +56,14 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.VzlXxsOwpd/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.cu1eHlgmEe/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 VSCODE_PIPE_LOGGING = true
-# makefile (from `Makefile', line 26)
+# makefile (from `Makefile', line 22)
 PWD := /Users/krisschaaf/OneDrive - haw-hamburg.de/Uni/3_Semester/BS/Aufgabe 4/BS_Praktikum_4/A4_frame
-# makefile (from `Makefile', line 5)
+# makefile (from `Makefile', line 2)
 DEBFLAGS = -O2 -DTZM_DEBUG
 # environment
 HOMEBREW_CELLAR = /opt/homebrew/Cellar
@@ -91,7 +95,7 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 25)
+# makefile (from `Makefile', line 21)
 KERNELDIR = /lib/modules/$(shell uname -r)/build
 # default
 MAKE_VERSION := 3.81
@@ -143,12 +147,12 @@ LC_ALL = C
 SUFFIXES := 
 # environment
 MAKELEVEL := 0
-# makefile (from `Makefile', line 9)
+# makefile (from `Makefile', line 5)
 EXTRA_CFLAGS = $(DEBFLAGS) -I$(LDDINC)
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1316
+VSCODE_PID = 1086
 # variable set hash-table stats:
 # Load=69/1024=7%, Rehash=0, Collisions=1/99=1%
 
@@ -181,7 +185,7 @@ modules:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 29):
+#  commands to execute (from `Makefile', line 25):
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) LDDINC=$(PWD)/../include modules
 	
 
@@ -194,7 +198,7 @@ modules:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-08-06 10:20:16
+#  Last modified 2022-01-29 11:42:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -210,7 +214,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 33):
+#  commands to execute (from `Makefile', line 29):
 	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions modules.order Module.symvers 
 	
 
@@ -227,8 +231,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jan 27 11:17:42 2022
+# Finished Make data base on Sat Jan 29 11:42:04 2022
 
- 
-make: *** No rule to make target `all'.  Stop.
  

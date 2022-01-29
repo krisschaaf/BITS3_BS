@@ -1,9 +1,5 @@
-
-
-
 # Compile flags for the module
 DEBFLAGS = -O2 -DTZM_DEBUG
-
 
 EXTRA_CFLAGS = $(DEBFLAGS)
 EXTRA_CFLAGS += -I$(LDDINC)
@@ -14,10 +10,10 @@ ifneq ($(KERNELRELEASE),)
 
 # Define all modules that should be compiled. All other actions will be
 # done by kernel build system.
-translate-objs := trans.o 
+translate-objs := translate.o 
 # Define all kernel modules that should be generated All other actions 
 # will be done by kernel build system.
-obj-m := trans.o   
+obj-m := translate.o   
 
 else
 # For the FIRST call of Makefile  out of the kernel build env.

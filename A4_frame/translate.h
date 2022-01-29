@@ -16,10 +16,6 @@
 
 #include <linux/ioctl.h> /* needed for the _IOW etc stuff used later */
 
-#ifndef init_MUTEX
-#define init_MUTEX(mutex) sema_init(mutex, 1)
-#endif	
-
 /*
  * Macros to help debugging
  */
@@ -41,6 +37,28 @@
 #define TRANS_MINOR 0   /* dynamic major by default */
 #endif
 
-#define TRANS_BUF_SIZE  64 /* Buffer size for read and write buffer */
+#define ALPHABET "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+
+struct trans
+{
+        struct semaphore sem; // mutual exclusion semaphore for this structure
+        struct cdev cdev;     // Char device structure
+        int major;
+        int minor;
+        char transPuffer[translate_bufsize];
+};
+
+// extern struct trans trans0; 
+// extern struct trans trans1; 
+
+// static int trans_open(struct inode *inode, struct file *filp);
+// static int trans_release(struct inode *inode, struct file *filp);
+// static ssize_t trans_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos);
+// static ssize_t trans_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos);
+// static int trans_setup_cdev(struct cdev *cdev, dev_t devno);
+// static int trans_init_module(void);
+// static void trans_cleanup_module(void);
+// char caeser_off(char key, int offset);
+// char caeser_on(char key, int offset);
 
 #endif /* _TRANS_H_ */
