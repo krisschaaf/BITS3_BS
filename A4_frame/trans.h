@@ -39,15 +39,6 @@
 
 #define ALPHABET "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
 
-struct trans
-{
-        struct semaphore sem; // mutual exclusion semaphore for this structure
-        struct cdev cdev;     // Char device structure
-        int major;
-        int minor;
-        char transPuffer[translate_bufsize];
-};
-
 // extern struct trans trans0; 
 // extern struct trans trans1; 
 
