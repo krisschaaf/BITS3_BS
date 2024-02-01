@@ -1,0 +1,19 @@
+Da es nach wie vor zu Deadlocks und segmentation faults in der queue.c kam wurde ein neues Konzept eingeführt.
+
+Die Mutexe sind weiterhin als extra Array gespeichert und wurden nicht in die structs der einzelnen Pakete integriert. 
+
+Die Funktionen zum Sperren und Entsperren des übergebenen Mutex structs, welcher den eigentlichen Mutex, den Vorgänger und 
+den Nachfolger enthält, wurden entfernt. 
+Diese Funktionen wurden durch einen Mutex gesperrt, welcher die gesamte Queue sperrt.
+Da das in dieser Aufgabe nicht vorgesehen war, wurde dieser nun entfernt und ein neues Konzept verwendet. 
+
+In diesem neuen Konzept wird immer nur in eine Richtung gesperrt. 
+So wurde jetzt zum Beispiel in der queue.consume() als erstes der firstSlot gesperrt, dananch der Nachfolger und danach dessen
+Nachfolger. 
+Zum Entsperren wird dann auch wieder zuerst der firstSlot, dann der Nachfolger, usw. entsperrt. 
+
+Nach dem gleichen Konzept wird auch in der queue.produce() gearbeitet. 
+Auch hier wird zuerst der firstSlot, dann der Nachfolger und dann dessen Nachfolger gesperrt. 
+Beim Suchen der richtigen Stelle zum Einfügen wird jeweils zuerst dann Nachfolger gesperrt und dann der Vorgaenger entsperrt.
+Also auch hier ist die richtige Sperrreihenfolge eingehalten. 
+Beim Entsperren wird hier zuerst der tempVor, dann der Nachfolger und dann dessen Nachfolger entsperrt. 

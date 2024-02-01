@@ -1,0 +1,69 @@
+1.  Initialisiere sharedMemory 
+-> mmanage.vmem_init(void) 
+
+2. Referenziere sharedMemory
+-> vmacces.vmem_init(void)
+
+3. Erstelle Befehl für syncdataexchange um in mmanage die Seite in Hauptspeicher zu laden 
+-> vmaccess.vmem_put_page_into_mem(int adress)
+
+4. Lese Seite aus Memory und prüfe ob diese vorhanden ist 
+-> vmaccess.vmem_read(int adress)
+-> Ansonsten rufe fetch_page_from_disk auf 
+
+5. Schreibe Seite in Memory und prüfe ob genug Speicher vorhanden ist 
+-> vmaccess.vmem_write(int adress, int data)
+
+5.1 Binde syncdataexchange.sendMsgToMmanager() ein
+->  Sendet Nachricht an mmanage und wartet auf Bestätigung
+->  Diese Nachricht enthält Infos zum Befehl des Prozesses, wenn dieser ausgeführt werden kann 
+    wird ACK vom mmanage geschickt.
+
+5.2 Binde syncdataexchange.waitForMsg(void) ein
+->  Diese blockiert die Synchronisation zwischen vmapp und MemoryManager solange, bis 
+    vmapp einen Befehl anfordert 
+->  mmanage wird nur aktiv, wenn eine Message von vmapp kommt 
+
+5.3 Binde syncdataexchange.sendAck() ein
+->  Sendet Bestätigung an vmapp, damit diese weiß, dass Seite jetzt vorhanden ist oder Speicher zur 
+    Verfügung steht 
+
+6. Suche leeren Frame innerhalb des mainMemorys
+-> mmanage.find_unused_frame(void)
+
+7. Lade Seite in mainMemory und lösche sie von pagefile
+-> mmanage.fetch_page_from_disk(int page, int frame)
+
+8. Schreibe modifizierte Seite in pagefile und lösche sie von mainMemory 
+-> mmanage.remove_page_from_memory(int page, int *removedPage, int *frame)
+
+9. Implementiere Seitenersetzungsalgorithmen
+-> mmanage.find_remove_fifo
+-> mmanage.find_remove_clock
+-> mmanage.find_remove_aging
+
+10. Zaehler der Seite erhöhen und referenced Bit reseten 
+-> mmanage.update_age_reset_ref(void) 
+
+11. cleanup im Signalhandler einhängen 
+-> mmanage.cleanup() in SIGINT einhängen
+//erledigt Funktion sighandler 
+
+Infos:
+
+IPC_CREAT Flag in ipc.h herausfinden
+
+counter g_count in vmacces.c 
+-> inkrementiert bei jedem Memory Zugriff
+
+vmem.h pageTable flags
+#define PTF_PRESENT     1
+#define PTF_DIRTY       2 //!< store: need to write 
+#define PTF_REF         4    
+
+mmanage.c:
+pf_count -> pagefault counter 
+shm_id -> id für shared memory bei cleanup 
+
+*vmem -> reference zum sharedMemory 
+
